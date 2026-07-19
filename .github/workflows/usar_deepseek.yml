@@ -1,0 +1,20 @@
+name: Usar DeepSeek API
+
+on:
+  workflow_dispatch:  # Permite rodar manualmente pelo botão
+  push:               # (Opcional) roda automaticamente ao subir código
+
+jobs:
+  chamar-deepseek:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fazer requisição para DeepSeek
+        run: |
+          curl -X POST https://api.deepseek.com/v1/chat/completions \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${{ secrets.DEEPSEEK_API_KEY }}" \
+            -d '{
+              "model": "deepseek-chat",
+              "messages": [{"role": "user", "content": "Olá, DeepSeek!"}]
+            }'
+            adiciona workflow da deepseek
